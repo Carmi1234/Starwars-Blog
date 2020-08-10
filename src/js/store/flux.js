@@ -1,16 +1,43 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
+			favorites: ["test"],
+			characters: [
 				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
+					name: "test",
+					gender: "test",
+					hair_color: "test",
+					height: "test"
 				},
 				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
+					name: "test",
+					gender: "test",
+					hair_color: "test",
+					height: "test"
+				},
+				{
+					name: "test",
+					gender: "test",
+					hair_color: "test",
+					height: "test"
+				}
+			],
+
+			planets: [
+				{
+					name: "test",
+					description:
+						"Some quick example text to build on the card title and make up the bulk of the card content."
+				},
+				{
+					name: "test",
+					description:
+						"Some quick example text to build on the card title and make up the bulk of the card content."
+				},
+				{
+					name: "test",
+					description:
+						"Some quick example text to build on the card title and make up the bulk of the card content."
 				}
 			]
 		},
@@ -19,10 +46,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
+			getCharacters: () => {
+				fetch("https://swapi.dev/api/people/")
+					.then(res => res.json())
+					.then(data => setStore({ characters: data.results }));
+			},
+			getPlanets: () => {
+				fetch("https://swapi.dev/api/planets/")
+					.then(res => res.json())
+					.then(data => setStore({ planets: data.results }));
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
+			},
+			addFavorites: () => {
+				console.log("Test");
 			},
 			changeColor: (index, color) => {
 				//get the store
